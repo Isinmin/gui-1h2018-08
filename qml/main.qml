@@ -34,6 +34,27 @@ Rectangle {
                 height: width
             }
         }
+        Word {
+            id: word
+            text: applicationData.word
+            anchors.bottom: letterSelector.top
+            anchors.bottomMargin: parent.height * 0.05
+            anchors.horizontalCenter: parent.horizontalCenter
+            width: parent.width * 0.8
+            height: parent.height * 0.1
+        }
+    }
 
-       
+    Rectangle {
+    id: loadingScreen
+    visible: !gameScreen.visible
+    anchors.fill: parent
+    color: "black"
+
+    BusyIndicator {
+        id: busyIndicator
+        running: true
+        anchors.centerIn: parent
+    }
+
 }

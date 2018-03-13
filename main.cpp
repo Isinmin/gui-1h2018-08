@@ -1,7 +1,10 @@
 #include <QtGui/QGuiApplication>
 #include <QtQml>
+#include "qtquick2applicationviewer.h"
+#include "data.h"
 #include <QTextCodec>
 #include <QTextStream>
+
 
 int main(int argc, char *argv[])
 {
