@@ -4,6 +4,7 @@ Item {
     property alias text: label.text
 
     Text {
+
         anchors.top: parent.top
         anchors.horizontalCenter: parent.horizontalCenter
         id: label
@@ -23,6 +24,8 @@ Item {
         }
     }
 
+
+	// Размер клавиш зависит от размера окна
     Rectangle {
         color: "white"
         width: parent.width

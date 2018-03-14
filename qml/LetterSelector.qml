@@ -8,16 +8,19 @@ Item {
     property real verticalSpacing: 4
     property bool locked: false
 
+
     property var keys: [key1, key2, key3, key4, key5, key6, keyA, keyB, keyC, keyD,keyE,
                     keyF, keyG, keyH, keyI, keyJ,keyH, keyJ, keyK, keyL, keyM,keyN,
                     keyO, keyP, keyQ, keyR, keyS,keyT, keyU, keyV, keyW, keyX, keyY, keyZ, keyGuess, keyReveal];
 
+    // Обновление клавиатуры (!bag!)     		
     function reset() {
-        //Resets all key values to their default state
         for(var i = 0; i < keys.length; ++i)
             keys[i].available = true;
     }
 
+
+    /*
     function vowelPurchased(vowel) {
         if (vowel === 65) {
             keyA.available = false;
@@ -31,7 +34,10 @@ Item {
             keyU.available = false;
         }
     }
+    */
 
+
+    // Блокировка выбранных клавиш
     onLockedChanged: {
         if (locked) {
             for(var i = 0; i < keys.length; ++i)
@@ -39,13 +45,18 @@ Item {
         }
     }
 
+
+
     signal letterSelected(string letter)
     signal guessWordPressed()
     signal resetPressed()
     signal revealPressed()
     property alias keyView: keyView
 
-    //Qwerty layout
+    // TODO: Поменять размер и дизайн кнопок
+
+
+    // Клавиатура
     Column {
         id: column
         width: 640
@@ -455,37 +466,19 @@ Item {
             anchors.left: parent.left
             anchors.leftMargin: 138
             spacing: keyView.horizontalSpacing
-            Key {
-                id: keyReveal
-                height: keyView.keyHeight
-                width: keyView.keyWidth * 2
-                text: "Показать слово"
-                available: true
-                onKeyActivated: {
-                    revealPressed();
-                }
-            }
-
-            Key {
-                id: keyGuess
-                height: keyView.keyHeight
-                width: keyView.keyWidth * 3
-                text: "Ввести слово"
-                available: true
-                onKeyActivated: {
-                    guessWordPressed();
-                }
-            }
 
             Key {
                id: keyReset
                height: keyView.keyHeight
                width: keyView.keyWidth * 2
-               text: "Заного"
+               text: "Заново"
                available: true
                onKeyActivated: {
                     resetPressed();
                }
+
+            /* "Отгадать слово"
+             "Показать слово" */
             }
         }
     }
