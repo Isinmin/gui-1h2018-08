@@ -15,10 +15,8 @@ public:
     explicit Data(QObject *parent = 0);
 
     Q_INVOKABLE void reset();
-    Q_INVOKABLE void reveal();
     Q_INVOKABLE void gameOverReveal();
     Q_INVOKABLE void requestLetter(const QString &letter);
-    Q_INVOKABLE void guessWord(const QString &word);
 
     QString word() const { return m_word; }
     QString lettersOwned() const { return m_lettersOwned; }

@@ -57,12 +57,12 @@ void Data::chooseRandomWord()
 
 QString Data::vowels() const
 {
-    return QStringLiteral("”≈€¿Œﬂ»");
+    return QStringLiteral("–£–ï–´–ê–û–≠–Ø–ò–Æ");
 }
 
 QString Data::consonants() const
 {
-    return QStringLiteral("…÷ Õ√ÿŸ«‘¬œ–Àƒ◊—Ã“‹");
+    return QStringLiteral("–ô–¶–ö–ù–ì–®–©–ó–•–™–§–í–ü–†–õ–î–ñ–ß–°–ú–¢–ë");
 }
 
 int Data::errorCount() const
@@ -75,31 +75,13 @@ int Data::errorCount() const
     return count;
 }
 
-void Data::reveal()
-{
-    m_lettersOwned += vowels() + consonants();
-    emit lettersOwnedChanged();
-    emit errorCountChanged();
-}
-
 void Data::gameOverReveal()
 {
     m_lettersOwned += vowels() + consonants();
     emit lettersOwnedChanged();
 }
 
-void Data::guessWord(const QString &word)
-{
-    if (word.compare(m_word, Qt::CaseInsensitive) == 0) {
-        m_lettersOwned += m_word.toUpper();
-    } else {
-        static int i=0;
-        Q_ASSERT(i < 10);
-        m_lettersOwned += QString::number(i++);
-        emit errorCountChanged();
-    }
-    emit lettersOwnedChanged();
-}
+
 
 void Data::requestLetter(const QString &letterString)
 {

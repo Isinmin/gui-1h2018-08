@@ -48,9 +48,7 @@ Item {
 
 
     signal letterSelected(string letter)
-    signal guessWordPressed()
     signal resetPressed()
-    signal revealPressed()
     property alias keyView: keyView
 
     // TODO: Поменять размер и дизайн кнопок
