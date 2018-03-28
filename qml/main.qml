@@ -18,6 +18,10 @@ Rectangle {
         return true
     }
 
+<<<<<<< HEAD
+=======
+    // 2 балки голова туловище 2 руки 2 ноги
+>>>>>>> 1cde2b7ff71df7e1774a6da7d2ec7e8c23c79b15
     property bool gameOver: applicationData.errorCount > 8
     property bool success: applicationData.word.length > 0 && !gameOver && allContained(applicationData.lettersOwned, applicationData.word)
 
@@ -40,12 +44,14 @@ Rectangle {
             anchors.rightMargin: topLevel.width / 100
         }
 
+
         Item {
             anchors.top: title.bottom
             anchors.bottom: word.top
             anchors.left: parent.left
             anchors.right: parent.right
 
+            // Отрисовка висельника
             Hangman {
                 anchors.centerIn: parent
                 width: Math.min(parent.width, parent.height) * 0.75
@@ -53,6 +59,11 @@ Rectangle {
             }
         }
 
+<<<<<<< HEAD
+=======
+
+        // Отображаемое слово
+>>>>>>> 1cde2b7ff71df7e1774a6da7d2ec7e8c23c79b15
         Word {
             id: word
             text: applicationData.word
@@ -63,6 +74,10 @@ Rectangle {
             height: parent.height * 0.1
         }
 
+<<<<<<< HEAD
+=======
+        // Выбор буквы
+>>>>>>> 1cde2b7ff71df7e1774a6da7d2ec7e8c23c79b15
         LetterSelector {
             id: letterSelector
             locked: gameOver || success
@@ -78,7 +93,10 @@ Rectangle {
                 letterSelector.reset();
                 applicationData.reset();
             }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1cde2b7ff71df7e1774a6da7d2ec7e8c23c79b15
             onRevealPressed: {
                 applicationData.reveal();
             }
@@ -88,6 +106,7 @@ Rectangle {
         }
     }
 
+<<<<<<< HEAD
 //    RowLayout {
 //        id: rowLayout
 //        anchors.top: parent.top
@@ -182,6 +201,9 @@ Rectangle {
 //        }
 //    }
 
+=======
+    // До начала игры
+>>>>>>> 1cde2b7ff71df7e1774a6da7d2ec7e8c23c79b15
     Rectangle {
         id: loadingScreen
         visible: !gameScreen.visible
@@ -195,11 +217,14 @@ Rectangle {
         }
     }
 
+<<<<<<< HEAD
     WordInputDialog {
         id: wordInputDialog
         visible: false
         anchors.fill: parent
     }
+=======
+>>>>>>> 1cde2b7ff71df7e1774a6da7d2ec7e8c23c79b15
 
     Connections {
         target: applicationData

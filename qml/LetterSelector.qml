@@ -8,16 +8,23 @@ Item {
     property real verticalSpacing: 4
     property bool locked: false
 
+
     property var keys: [key1, key2, key3, key4, key5, key6, keyA, keyB, keyC, keyD,keyE,
                     keyF, keyG, keyH, keyI, keyJ,keyH, keyJ, keyK, keyL, keyM,keyN,
                     keyO, keyP, keyQ, keyR, keyS,keyT, keyU, keyV, keyW, keyX, keyY, keyZ, keyGuess, keyReveal];
 
+    // Обновление клавиатуры (!bag!)     		
     function reset() {
+<<<<<<< HEAD
         //Дефолтные состояния для кнопок
+=======
+>>>>>>> 1cde2b7ff71df7e1774a6da7d2ec7e8c23c79b15
         for(var i = 0; i < keys.length; ++i)
             keys[i].available = true;
     }
 
+
+    /*
     function vowelPurchased(vowel) {
         if (vowel === 65) {
             keyA.available = false;
@@ -31,7 +38,10 @@ Item {
             keyU.available = false;
         }
     }
+    */
 
+
+    // Блокировка выбранных клавиш
     onLockedChanged: {
         if (locked) {
             for(var i = 0; i < keys.length; ++i)
@@ -42,12 +52,17 @@ Item {
 
 
     signal letterSelected(string letter)
-    signal guessWordPressed()
     signal resetPressed()
-    signal revealPressed()
     property alias keyView: keyView
 
+<<<<<<< HEAD
     //Раскладка
+=======
+    // TODO: Поменять размер и дизайн кнопок
+
+
+    // Клавиатура
+>>>>>>> 1cde2b7ff71df7e1774a6da7d2ec7e8c23c79b15
     Column {
         id: column
         width: 640
@@ -461,6 +476,7 @@ Item {
             anchors.left: parent.left
             anchors.leftMargin: 138
             spacing: keyView.horizontalSpacing
+<<<<<<< HEAD
 
             Key {
                 id: keyReveal
@@ -483,6 +499,8 @@ Item {
                     guessWordPressed();
                 }
             }
+=======
+>>>>>>> 1cde2b7ff71df7e1774a6da7d2ec7e8c23c79b15
 
             Key {
                id: keyReset
@@ -494,6 +512,9 @@ Item {
                onKeyActivated: {
                     resetPressed();
                }
+
+            /* "Отгадать слово"
+             "Показать слово" */
             }
         }
     }

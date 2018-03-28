@@ -59,14 +59,15 @@ void Data::chooseRandomWord()
 
 QString Data::vowels() const
 {
-    return QStringLiteral("ÓÅÛÀÎßÈ");
+    return QStringLiteral("Ğ£Ğ•Ğ«ĞĞĞ­Ğ¯Ğ˜Ğ®");
 }
 
 QString Data::consonants() const
 {
-    return QStringLiteral("ÉÖÊÍÃØÙÇÔÂÏĞËÄ×ÑÌÒÜ");
+    return QStringLiteral("Ğ™Ğ¦ĞšĞĞ“Ğ¨Ğ©Ğ—Ğ¥ĞªĞ¤Ğ’ĞŸĞ Ğ›Ğ”Ğ–Ğ§Ğ¡ĞœĞ¢Ğ‘");
 }
 
+<<<<<<< HEAD
 void Data::reveal()
 {
     m_lettersOwned += vowels() + consonants();
@@ -87,6 +88,25 @@ void Data::guessWord(const QString &word)
     }
     emit lettersOwnedChanged();
 }
+=======
+int Data::errorCount() const
+{
+    int count = 0;
+    foreach (QChar c, m_lettersOwned) {
+        if (!m_word.contains(c))
+            ++count;
+    }
+    return count;
+}
+
+void Data::gameOverReveal()
+{
+    m_lettersOwned += vowels() + consonants();
+    emit lettersOwnedChanged();
+}
+
+
+>>>>>>> 1cde2b7ff71df7e1774a6da7d2ec7e8c23c79b15
 
 int Data::errorCount() const
 {
