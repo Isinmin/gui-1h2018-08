@@ -19,11 +19,8 @@ public:
     Q_INVOKABLE void reset();
     Q_INVOKABLE void gameOverReveal();
     Q_INVOKABLE void requestLetter(const QString &letter);
-<<<<<<< HEAD
     Q_INVOKABLE void reveal();
     Q_INVOKABLE void guessWord(const QString &word);
-=======
->>>>>>> 1cde2b7ff71df7e1774a6da7d2ec7e8c23c79b15
 
 
     QString word() const { return m_word; }

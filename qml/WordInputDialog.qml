@@ -35,7 +35,7 @@ Item {
             Text {
                 id: label
 
-                text: "What's the word?"
+                text: "Что за слово?"
                 fontSizeMode: Text.Fit
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
@@ -74,7 +74,7 @@ Item {
                 spacing: 8
                 Key {
                     id: okButton
-                    text: "Ok"
+                    text: "Принять"
                     buttonColor: "black"
                     textColor: "white"
                     height: parent.height
@@ -88,7 +88,7 @@ Item {
                 }
                 Key {
                     id: cancelButton
-                    text: "Cancel"
+                    text: "Отмена"
                     buttonColor: "black"
                     textColor: "white"
                     height: parent.height
