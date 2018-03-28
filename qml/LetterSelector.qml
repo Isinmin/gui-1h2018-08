@@ -13,7 +13,7 @@ Item {
                     keyO, keyP, keyQ, keyR, keyS,keyT, keyU, keyV, keyW, keyX, keyY, keyZ, keyGuess, keyReveal];
 
     function reset() {
-        //Resets all key values to their default state
+        //Дефолтные состояния для кнопок
         for(var i = 0; i < keys.length; ++i)
             keys[i].available = true;
     }
@@ -39,13 +39,15 @@ Item {
         }
     }
 
+
+
     signal letterSelected(string letter)
     signal guessWordPressed()
     signal resetPressed()
     signal revealPressed()
     property alias keyView: keyView
 
-    //Qwerty layout
+    //Раскладка
     Column {
         id: column
         width: 640
@@ -86,7 +88,7 @@ Item {
                 purchasable: true
                 onKeyActivated: {
                     letterSelected(letter);
-
+                    available = false;
                 }
             }
             Key {
@@ -134,6 +136,7 @@ Item {
                 purchasable: true
                 onKeyActivated: {
                     letterSelected(letter);
+                    available = false;
                 }
             }
             Key {
@@ -145,6 +148,7 @@ Item {
                 purchasable: true
                 onKeyActivated: {
                     letterSelected(letter);
+                    available = false;
                 }
             }
             Key {
@@ -156,6 +160,7 @@ Item {
                 purchasable: true
                 onKeyActivated: {
                     letterSelected(letter);
+                    available = false;
                 }
             }
             Key {
@@ -211,6 +216,7 @@ Item {
                 purchasable: true
                 onKeyActivated: {
                     letterSelected(letter);
+                    available = false;
                 }
             }
             Key {
@@ -455,6 +461,7 @@ Item {
             anchors.left: parent.left
             anchors.leftMargin: 138
             spacing: keyView.horizontalSpacing
+
             Key {
                 id: keyReveal
                 height: keyView.keyHeight
@@ -479,9 +486,10 @@ Item {
 
             Key {
                id: keyReset
+               x: 8
                height: keyView.keyHeight
                width: keyView.keyWidth * 2
-               text: "Заного"
+               text: "Заново"
                available: true
                onKeyActivated: {
                     resetPressed();

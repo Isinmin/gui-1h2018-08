@@ -4,7 +4,7 @@
 #include <time.h>
 #include <QBuffer>
 #include <QtConcurrent/QtConcurrentRun>
-
+//#include "QSqlQuery"
 Data *Data::m_instance = 0;
 
 Data::Data(QObject *parent)
@@ -14,8 +14,10 @@ Data::Data(QObject *parent)
     m_instance = this;
     qsrand(::time(0));
 
-
     QtConcurrent::run(this, &Data::initWordList);
+}
+void Data::initDb(){
+
 }
 
 void Data::initWordList()
@@ -65,6 +67,27 @@ QString Data::consonants() const
     return QStringLiteral("…÷ Õ√ÿŸ«‘¬œ–Àƒ◊—Ã“‹");
 }
 
+void Data::reveal()
+{
+    m_lettersOwned += vowels() + consonants();
+    emit lettersOwnedChanged();
+    emit errorCountChanged();
+}
+
+void Data::guessWord(const QString &word)
+{
+    if (word.compare(m_word, Qt::CaseInsensitive) == 0) {
+        m_lettersOwned += m_word.toUpper();
+    } else {
+        // Small hack to get an additional penalty for guessing wrong
+        static int i=0;
+        Q_ASSERT(i < 10);
+        m_lettersOwned += QString::number(i++);
+        emit errorCountChanged();
+    }
+    emit lettersOwnedChanged();
+}
+
 int Data::errorCount() const
 {
     int count = 0;
@@ -75,31 +98,12 @@ int Data::errorCount() const
     return count;
 }
 
-void Data::reveal()
-{
-    m_lettersOwned += vowels() + consonants();
-    emit lettersOwnedChanged();
-    emit errorCountChanged();
-}
-
 void Data::gameOverReveal()
 {
     m_lettersOwned += vowels() + consonants();
     emit lettersOwnedChanged();
 }
 
-void Data::guessWord(const QString &word)
-{
-    if (word.compare(m_word, Qt::CaseInsensitive) == 0) {
-        m_lettersOwned += m_word.toUpper();
-    } else {
-        static int i=0;
-        Q_ASSERT(i < 10);
-        m_lettersOwned += QString::number(i++);
-        emit errorCountChanged();
-    }
-    emit lettersOwnedChanged();
-}
 
 void Data::requestLetter(const QString &letterString)
 {
@@ -119,3 +123,5 @@ void Data::registerLetterBought(const QChar &letter)
     if (!m_word.contains(letter))
         emit errorCountChanged();
 }
+
+
