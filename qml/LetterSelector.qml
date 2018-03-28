@@ -154,6 +154,7 @@ Item {
                     available = false;
                 }
             }
+            
             Key {
                 id: keyI
                 height: keyView.keyHeight
