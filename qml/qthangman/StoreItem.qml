@@ -51,11 +51,9 @@ Rectangle {
         onClicked: {
             pendingRect.visible = true;
             spinBox.visible = true;
-<<<<<<< HEAD
-            statusText.text = "Покупка глассных...";
-=======
+
             statusText.text = "Покупка гласных...";
->>>>>>> 1676b795e71e29a782c14b718575a402d34b2bf9
+
             storeItem.state = "PURCHASING";
             product.purchase();
         }
