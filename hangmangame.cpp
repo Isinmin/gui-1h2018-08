@@ -52,13 +52,11 @@ void HangmanGame::requestLetter(const QString &letterString)
 void HangmanGame::guessWord(const QString &word)
 {
     if (word.compare(m_word, Qt::CaseInsensitive) == 0) {
-        //Determine how many vowels were earned
         setVowelsAvailable(m_vowelsAvailable + calculateEarnedVowels());
-        //score is number of remaining consonants + remaining errors
+
         setScore(m_score + calculateEarnedPoints());
         m_lettersOwned += m_word.toUpper();
     } else {
-        // Small hack to get an additional penalty for guessing wrong
         static int i=0;
         Q_ASSERT(i < 10);
         m_lettersOwned += QString::number(i++);
@@ -194,10 +192,6 @@ void HangmanGame::initWordList()
         if (file.open(QIODevice::ReadOnly)) {
             QTextStream textStream(&file);
             textStream.setCodec("UTF-8");
-    //        QByteArray allData = file.readAll();
-    //        QBuffer buffer(&allData);
-    //        if (!buffer.open(QIODevice::ReadOnly))
-    //            qFatal("Couldn't open buffer for reading!");
 
             while (true) {
                 QString line = textStream.readLine();
@@ -205,10 +199,6 @@ void HangmanGame::initWordList()
                     break;
                 else
                     m_wordList.append(line);
-                /*
-                QByteArray ba = buffer.readLine().trimmed().toUpper();
-                if (!ba.isEmpty() && ba.length() < 10)
-                    m_wordList.append(QString::fromLatin1(ba));*/
             }
         }
         chooseRandomWord();
