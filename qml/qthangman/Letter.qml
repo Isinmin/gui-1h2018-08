@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick 2.2
 
 Item {
     property alias text: label.text
@@ -9,6 +9,7 @@ Item {
         id: label
         color: "white"
         font.pixelSize: parent.height * 0.75
+        font.family: Settings.fontFamily
 
         opacity: applicationData.lettersOwned.indexOf(text) >= 0 ? 1.0 : 0.0
         visible: opacity > 0.0

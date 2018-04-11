@@ -1,24 +1,35 @@
-import QtQuick 2.0
-
+import QtQuick 2.2
+// отрисовка висельника
 Rectangle {
     id: hangman
-    color: "black"
-    border.color: "white"
-    border.width: width / 100
+    color: "transparent"
 
     property int errorCount: applicationData.errorCount
+    property var game: Item
 
-     Rectangle {
-        id: pole
-        anchors.top: parent.top
-        anchors.topMargin: parent.height / 50
+    Rectangle {
+        id: base
         anchors.bottom: parent.bottom
-        anchors.bottomMargin: parent.height / 50
         anchors.left: parent.left
-        anchors.leftMargin: parent.height / 50
-        width: parent.width / 10
+        anchors.right: parent.right
+        height: parent.height / 20
 
         opacity: errorCount > 0 ? 1.0 : 0.0
+        Behavior on opacity {
+            NumberAnimation {
+                duration: 300
+            }
+        }
+    }
+
+    Rectangle {
+        id: pole
+        anchors.top: parent.top
+        anchors.bottom: parent.bottom
+        anchors.left: parent.left
+        width: parent.width / 20
+
+        opacity: errorCount > 1 ? 1.0 : 0.0
         visible: opacity > 0.0
         Behavior on opacity {
             NumberAnimation {
@@ -33,13 +44,11 @@ Rectangle {
         id: horizontalPole
         anchors.top: pole.top
         anchors.left: pole.right
-        anchors.right: parent.right
-        anchors.rightMargin: parent.height / 50
-        height: parent.height / 10
-
+        anchors.right: parent.horizontalCenter
+        anchors.rightMargin:  -parent.width / 40
+        height: parent.height / 20
         color: "white"
-
-        opacity: errorCount > 1 ? 1.0 : 0.0
+        opacity: errorCount > 2 ? 1.0 : 0.0
         visible: opacity > 0.0
         Behavior on opacity {
             NumberAnimation {
@@ -52,9 +61,8 @@ Rectangle {
         id: rope
         anchors.top: horizontalPole.bottom
         anchors.horizontalCenter: parent.horizontalCenter
-        width: parent.width / 100
+        width: parent.width / 20
         height: parent.height / 5
-
         opacity: errorCount > 2 ? 1.0 : 0.0
         visible: opacity > 0.0
         Behavior on opacity {
@@ -75,15 +83,13 @@ Rectangle {
         Rectangle {
             id: head
             anchors.top: parent.top
-            anchors.topMargin: -1
+            anchors.topMargin: -head.height * 0.25
             anchors.horizontalCenter: parent.horizontalCenter
-            height: parent.height * 0.146
+            height: parent.height * 0.15
             width: height
 
             radius: width * 0.5
-            color: "black"
-            border.width: width / 10
-            border.color: "white"
+            color: "white"
             opacity: errorCount > 3 ? 1.0 : 0.0
             visible: opacity > 0.0
             Behavior on opacity {
@@ -96,12 +102,42 @@ Rectangle {
         Rectangle {
             id: body
             anchors.top: head.bottom
-            anchors.topMargin: -1
+            anchors.topMargin: hangman.height / 40
             anchors.horizontalCenter: head.horizontalCenter
-            height: head.height * 3
-            width: head.border.width
-
+            height: width * 1.8
+            width: head.width * 1.4
             opacity: errorCount > 4 ? 1.0 : 0.0
+            visible: opacity > 0.0
+            radius: 5
+            Behavior on opacity {
+                NumberAnimation {
+                    duration: 300
+                }
+            }
+        }
+        Rectangle {
+            id: armTop1
+            anchors.top: body.top
+            anchors.right: body.horizontalCenter
+            width: (body.width * 1.85) * 0.5
+            height: head.height * 0.7
+            radius: height
+            opacity: errorCount > 5 ? 1.0 : 0.0
+            visible: opacity > 0.0
+            Behavior on opacity {
+                NumberAnimation {
+                    duration: 300
+                }
+            }
+        }
+        Rectangle {
+            id: armTop2
+            anchors.top: body.top
+            anchors.left: body.horizontalCenter
+            width: (body.width * 1.85) * 0.5
+            height: head.height * 0.7
+            radius: height
+            opacity: errorCount > 6 ? 1.0 : 0.0
             visible: opacity > 0.0
             Behavior on opacity {
                 NumberAnimation {
@@ -112,16 +148,12 @@ Rectangle {
 
         Rectangle {
             id: arm1
-            anchors.top: body.top
-            anchors.topMargin: head.height * 0.25
-            anchors.horizontalCenter: body.horizontalCenter
-            height: body.height
-            width: head.border.width
-            transform: Rotation {
-                origin.x: arm1.width / 2
-                origin.y: 0
-                angle: 30
-            }
+            anchors.top: armTop1.bottom
+            anchors.topMargin: -armTop1.height * 0.5 - radius
+            anchors.left: armTop1.left
+            anchors.bottom: body.bottom
+            radius: width * 0.5
+            width: head.width * 0.35
             opacity: errorCount > 5 ? 1.0 : 0.0
             visible: opacity > 0.0
             Behavior on opacity {
@@ -133,16 +165,12 @@ Rectangle {
 
         Rectangle {
             id: arm2
-            anchors.top: body.top
-            anchors.topMargin: head.height * 0.25
-            anchors.horizontalCenter: body.horizontalCenter
-            height: body.height
-            width: head.border.width
-            transform: Rotation {
-                origin.x: arm1.width / 2
-                origin.y: 0
-                angle: -30
-            }
+            anchors.top: armTop2.bottom
+            anchors.topMargin: -armTop2.height * 0.5 - radius
+            anchors.right: armTop2.right
+            anchors.bottom: body.bottom
+            radius: width * 0.5
+            width: head.width * 0.35
             opacity: errorCount > 6 ? 1.0 : 0.0
             visible: opacity > 0.0
             Behavior on opacity {
@@ -156,14 +184,12 @@ Rectangle {
         Rectangle {
             id: leg1
             anchors.top: body.bottom
-            anchors.horizontalCenter: body.horizontalCenter
-            height: head.height * 3
-            width: head.border.width
-            transform: Rotation {
-                origin.x: leg1.width / 2
-                origin.y: 0
-                angle: 30
-            }
+            anchors.topMargin: -radius
+            anchors.left: body.left
+            height: body.height + radius
+            width: body.width * 0.42857
+            radius: width
+
             opacity: errorCount > 7 ? 1.0 : 0.0
             visible: opacity > 0.0
             Behavior on opacity {
@@ -176,14 +202,11 @@ Rectangle {
         Rectangle {
             id: leg2
             anchors.top: body.bottom
-            anchors.horizontalCenter: body.horizontalCenter
-            height: head.height * 3
-            width: head.border.width
-            transform: Rotation {
-                origin.x: leg2.width / 2
-                origin.y: 0
-                angle: -30
-            }
+            anchors.topMargin: -radius
+            anchors.right: body.right
+            height: body.height + radius
+            width: body.width * 0.42857
+            radius: width
 
             opacity: errorCount > 8 ? 1.0 : 0.0
             visible: opacity > 0.0
@@ -194,50 +217,4 @@ Rectangle {
             }
         }
     }
-
-    Text {
-        text: "ПОРАЖЕНИЕ"
-        anchors.centerIn: parent
-        opacity: topLevel.gameOver ? 1.0 : 0.0
-        visible: opacity > 0.0
-        color: "red"
-        font.pixelSize: parent.width / 10
-        font.bold: true
-        style: Text.Outline
-        styleColor: "white"
-        scale: visible ? 1.0 : 30.0
-        Behavior on opacity {
-            NumberAnimation {
-                duration: 500
-            }
-        }
-        Behavior on scale {
-            NumberAnimation {
-                duration: 2000
-            }
-        }
-    }
-
-    Text {
-        text: "ПОБЕДА"
-        anchors.centerIn: parent
-        opacity: topLevel.success ? 1.0 : 0.0
-        visible: opacity > 0.0
-        color: "green"
-        style: Text.Outline
-        styleColor: "white"
-        font.pixelSize: parent.width / 10
-        scale: visible ? 1.0 : 30.0
-        Behavior on opacity {
-            NumberAnimation {
-                duration: 500
-            }
-        }
-        Behavior on scale {
-            NumberAnimation {
-                duration: 2000
-            }
-        }
-    }
 }
-

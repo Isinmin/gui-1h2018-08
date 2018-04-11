@@ -1,3 +1,4 @@
+
 import QtQuick 2.1
 import QtQuick.Controls 1.0
 
@@ -10,6 +11,7 @@ Item {
         spacing: topLevel.width / 100
         anchors.fill: parent
         Repeater {
+            id: letters
             model: text.length
 
             Letter {

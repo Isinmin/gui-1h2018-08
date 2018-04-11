@@ -1,54 +1,52 @@
 import QtQuick 2.2
 
 Item {
-    id: keyItem
-    property bool available: true
-    property bool purchasable: false
+    id: button
     property string text: ""
-
     property color buttonColor: "white"
     property color textColor: "black"
+    property bool available: true
+    property alias fontPointSize: buttonText.font.pointSize
 
-    signal keyActivated(string letter)
+    signal clicked()
 
     state: "NORMAL"
 
     Rectangle {
-        id: keyRect
+        id: buttonRect
         anchors.fill: parent
-        radius: 6
+        radius: 10
         color: buttonColor
-        border.color: textColor
-        visible: keyItem.available
+        visible: button.available
         Text {
-            id: keyText
+            id: buttonText
             anchors.fill: parent
             anchors.rightMargin: parent.width * 0.05
             anchors.leftMargin: parent.width * 0.05
             anchors.bottomMargin: parent.height * 0.20
             anchors.topMargin: parent.height * 0.20
-            text: keyItem.text
+            text: button.text
             color: textColor
             fontSizeMode: Text.Fit
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
             minimumPointSize: 8
-            font.pointSize: 128
+            font.pointSize: 64
+            font.family: Settings.fontFamily
+            font.weight: Font.Light
         }
     }
 
     MouseArea {
         anchors.fill: parent
         onClicked: {
-            if (available) {
-                keyActivated(text);
-            }
+            button.clicked();
         }
         onPressed: {
-            keyItem.state = "PRESSED"
+            button.state = "PRESSED";
         }
         onReleased: {
-            keyItem.state = "NORMAL"
+            button.state = "NORMAL";
         }
     }
 
@@ -56,25 +54,25 @@ Item {
         State {
             name: "NORMAL"
             PropertyChanges {
-                target: keyRect
-                color: keyItem.buttonColor
-                border.color: keyItem.textColor
+                target: buttonRect
+                color: button.buttonColor
+                border.color: "transparent"
             }
             PropertyChanges {
-                target: keyText
-                color: keyItem.textColor
+                target: buttonText
+                color: button.textColor
             }
         },
         State {
             name: "PRESSED"
             PropertyChanges {
-                target: keyRect
-                color: keyItem.textColor
-                border.color: keyItem.buttonColor
+                target: buttonRect
+                color: "transparent"
+                border.color: button.buttonColor
             }
             PropertyChanges {
-                target: keyText
-                color: keyItem.buttonColor
+                target: buttonText
+                color: button.buttonColor
             }
         }
     ]
