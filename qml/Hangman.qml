@@ -1,6 +1,5 @@
 import QtQuick 2.0
 
-// Изображение Виселицы
 Rectangle {
     id: hangman
     color: "black"
@@ -9,12 +8,7 @@ Rectangle {
 
     property int errorCount: applicationData.errorCount
 
-<<<<<<< HEAD
      Rectangle {
-=======
-    // Вертикальная балка
-    Rectangle {
->>>>>>> 1cde2b7ff71df7e1774a6da7d2ec7e8c23c79b15
         id: pole
         anchors.top: parent.top
         anchors.topMargin: parent.height / 50
@@ -35,10 +29,6 @@ Rectangle {
         color: "white"
     }
 
-<<<<<<< HEAD
-=======
-    // Горизонтальная балка
->>>>>>> 1cde2b7ff71df7e1774a6da7d2ec7e8c23c79b15
     Rectangle {
         id: horizontalPole
         anchors.top: pole.top
@@ -58,10 +48,6 @@ Rectangle {
         }
     }
 
-<<<<<<< HEAD
-=======
-    // Верёвка
->>>>>>> 1cde2b7ff71df7e1774a6da7d2ec7e8c23c79b15
     Rectangle {
         id: rope
         anchors.top: horizontalPole.bottom
@@ -79,10 +65,6 @@ Rectangle {
         color: "white"
     }
 
-<<<<<<< HEAD
-=======
-    // Висельник 
->>>>>>> 1cde2b7ff71df7e1774a6da7d2ec7e8c23c79b15
     Item {
         id: dude
         anchors.top: rope.bottom
@@ -213,15 +195,8 @@ Rectangle {
         }
     }
 
-<<<<<<< HEAD
     Text {
         text: "ПОРАЖЕНИЕ"
-=======
-    // Итог игры с анимацией
-
-    Text {
-        text: "Поражение"
->>>>>>> 1cde2b7ff71df7e1774a6da7d2ec7e8c23c79b15
         anchors.centerIn: parent
         opacity: topLevel.gameOver ? 1.0 : 0.0
         visible: opacity > 0.0
@@ -231,8 +206,6 @@ Rectangle {
         style: Text.Outline
         styleColor: "white"
         scale: visible ? 1.0 : 30.0
-
-
         Behavior on opacity {
             NumberAnimation {
                 duration: 500
@@ -255,7 +228,6 @@ Rectangle {
         styleColor: "white"
         font.pixelSize: parent.width / 10
         scale: visible ? 1.0 : 30.0
-
         Behavior on opacity {
             NumberAnimation {
                 duration: 500

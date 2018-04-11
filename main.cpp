@@ -1,10 +1,9 @@
-#include <QtGui/QGuiApplication>
-#include <QtQml>
-#include "qtquick2applicationviewer.h"
-#include "data.h"
-#include <QTextCodec>
-#include <QTextStream>
 
+#include <QtQuick>
+#include <QtGui/QGuiApplication>
+#include <QtQml/QQmlApplicationEngine>
+#include <QTextCodec>
+#include "hangmangame.h"
 
 int main(int argc, char *argv[])
 {
@@ -12,13 +11,9 @@ int main(int argc, char *argv[])
     QTextCodec * codec;
     codec = QTextCodec::codecForName("utf-8");
     QTextCodec::setCodecForLocale(codec);
-    QtQuick2ApplicationViewer viewer;
+    qmlRegisterType<HangmanGame>("org.qtproject.qthangman", 1, 0, "HangmanGame");
 
-    QQmlContext *ctx = viewer.engine()->rootContext();
-    ctx->setContextProperty(QStringLiteral("applicationData"), new Data(&app));
-
-    viewer.setMainQmlFile(QStringLiteral("qml/hangman/main.qml"));
-    viewer.showExpanded();
+    QQmlApplicationEngine engine(QUrl("qrc:/qml/qthangman/main.qml"));
 
     return app.exec();
 }

@@ -1,10 +1,5 @@
 import QtQuick 2.0
 
-<<<<<<< HEAD
-=======
-
-// Кнопки клавиатуры (исправила расположение)
->>>>>>> 1cde2b7ff71df7e1774a6da7d2ec7e8c23c79b15
 Rectangle {
     id: button
     property alias font: label.font
