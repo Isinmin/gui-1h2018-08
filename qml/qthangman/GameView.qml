@@ -13,18 +13,14 @@ Item {
         return true
     }
 
-<<<<<<< HEAD
-=======
     // победы и поражения
->>>>>>> 1676b795e71e29a782c14b718575a402d34b2bf9
+
     property bool gameOver: applicationData.errorCount > 8
     property bool success: applicationData.word.length > 0 && !gameOver && allContained(applicationData.lettersOwned, applicationData.word)
     property alias globalButtonHeight: letterSelector.keyHeight
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 1676b795e71e29a782c14b718575a402d34b2bf9
+
     onGameOverChanged: {
         if (gameOver)
             applicationData.gameOverReveal();
@@ -87,11 +83,9 @@ Item {
         }
     }
 
-<<<<<<< HEAD
-=======
 
     // отображение слова
->>>>>>> 1676b795e71e29a782c14b718575a402d34b2bf9
+
     Word {
         id: word
         text: applicationData.word
@@ -102,10 +96,8 @@ Item {
         height: parent.height * 0.1
     }
 
-<<<<<<< HEAD
-=======
     // клава
->>>>>>> 1676b795e71e29a782c14b718575a402d34b2bf9
+
     LetterSelector {
         id: letterSelector
         locked: gameOver || success
@@ -164,11 +156,9 @@ Item {
         }
     }
 
-<<<<<<< HEAD
-=======
 
     // поражение
->>>>>>> 1676b795e71e29a782c14b718575a402d34b2bf9
+
     Text {
         id: gameOverText
         visible: gameOver
@@ -184,10 +174,9 @@ Item {
         font.weight: Font.Light
     }
 
-<<<<<<< HEAD
-=======
+
     // победа
->>>>>>> 1676b795e71e29a782c14b718575a402d34b2bf9
+
     Text {
         id: successText
         visible: success
