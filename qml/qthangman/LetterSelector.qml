@@ -1,6 +1,6 @@
 
 import QtQuick 2.2
-
+// клавиатура
 Item {
     id: keyView
     property real keyWidth: (width - (horizontalSpacing * 9)) / 12
@@ -17,6 +17,7 @@ Item {
             keyH, keyJ, keyK, keyL, keyM, keyN, keyO, keyP, keyQ, keyR, keyS,
             keyT, keyU, keyV, keyW, keyX, keyY, keyZ];
 
+     // отобразить клавиатуру заново
     function reset() {
 
         for (var i = 0; i < keys.length; ++i)

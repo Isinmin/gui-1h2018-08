@@ -1,5 +1,5 @@
 import QtQuick 2.2
-
+// отрисовка висельника
 Rectangle {
     id: hangman
     color: "transparent"

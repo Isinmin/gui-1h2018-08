@@ -6,8 +6,13 @@ import org.qtproject.qthangman 1.0
 Item {
     id: topLevel
 
+<<<<<<< HEAD
     height: 480
     width: 320
+=======
+    height: 650
+    width: 650
+>>>>>>> 1676b795e71e29a782c14b718575a402d34b2bf9
     property real buttonHeight: 0
     property real globalMargin: width * 0.025
 

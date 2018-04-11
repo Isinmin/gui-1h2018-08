@@ -3,8 +3,13 @@ import QtQuick.Controls 1.1
 
 ApplicationWindow {
     id: mainWindow
+<<<<<<< HEAD
     height: 640
     width: 580
+=======
+    height: 650
+    width: 650
+>>>>>>> 1676b795e71e29a782c14b718575a402d34b2bf9
     visible: true;
 
     Rectangle {
