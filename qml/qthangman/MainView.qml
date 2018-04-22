@@ -5,10 +5,7 @@ import org.qtproject.qthangman 1.0
 
 Item {
     id: topLevel
-
-
-    height: 480
-    width: 320
+    
     height: 650
     width: 650
 
