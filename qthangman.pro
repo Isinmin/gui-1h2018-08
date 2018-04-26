@@ -31,3 +31,6 @@ OTHER_FILES += \
     qml/qthangman/Word.qml \
     enable2.txt
 
+DISTFILES += \
+    lang_en.txt
+

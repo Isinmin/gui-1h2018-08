@@ -74,12 +74,18 @@ bool HangmanGame::isVowel(const QString &letter)
 
 QString HangmanGame::vowels() const
 {
+    if(language == "ru")
     return QStringLiteral("”≈€¿Œ›ﬂ»ﬁ");
+    if(language == "en")
+        return QStringLiteral("EIYUOA");
 }
 
 QString HangmanGame::consonants() const
 {
+    if(language == "ru")
     return QStringLiteral("…÷ Õ√ÿŸ«’‘¬œ–Àƒ∆◊—Ã“¡");
+    if(language == "en")
+        return QStringLiteral("QWRTPSDFGHJKLZXCVBNM");
 }
 
 int HangmanGame::errorCount() const
@@ -203,6 +209,42 @@ void HangmanGame::initWordList()
         }
         chooseRandomWord();
 }
+
+void HangmanGame::changeLanguage(const QString setLanguage)
+{
+    language = setLanguage;
+    m_wordList.clear();
+    QMutexLocker locker(&m_lock);
+        qsrand(::time(0) + 1000);
+        QFile file("");
+        if(language == "ru"){
+            qDebug() << language;
+            file.setFileName(":/enable2.txt");
+        }
+
+        if(language == "en"){
+            qDebug() << language;
+            file.setFileName(":/lang_en.txt");
+        }
+        if (file.open(QIODevice::ReadOnly)) {
+            QTextStream textStream(&file);
+            textStream.setCodec("UTF-8");
+
+            while (true) {
+                QString line = textStream.readLine();
+                if(line.isNull())
+                    break;
+                else
+                {
+                    m_wordList.append(line);
+                    qDebug() << m_wordList;
+                }
+            }
+        }
+        qDebug() << !false;
+        reset();
+}
+
 
 int HangmanGame::calculateEarnedVowels()
 {

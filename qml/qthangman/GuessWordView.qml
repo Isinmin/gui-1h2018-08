@@ -5,11 +5,13 @@ Item {
     id: dialog
     PageHeader {
         id: header
-        title: "Что это за слово?"
+
+        title: language==="ru" ? "Что это за слово?" : "Whats the word?"
         onClicked: {
             Qt.inputMethod.hide();
         }
     }
+
 
     Word {
         id: word

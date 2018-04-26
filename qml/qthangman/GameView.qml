@@ -3,7 +3,7 @@ import QtQuick.Controls 1.1
 
 Item {
     id: gameView
-
+    property string language: "ru"
     function allContained(owned, word)
     {
         for (var i=0; i<word.length; ++i) {
@@ -18,7 +18,6 @@ Item {
     property bool gameOver: applicationData.errorCount > 8
     property bool success: applicationData.word.length > 0 && !gameOver && allContained(applicationData.lettersOwned, applicationData.word)
     property alias globalButtonHeight: letterSelector.keyHeight
-
 
 
     onGameOverChanged: {
@@ -43,9 +42,48 @@ Item {
         height: globalButtonHeight
         width: parent.width * 0.25
         visible: !applicationData.vowelsUnlocked
-        text: "Глассные: " + applicationData.vowelsAvailable
+        text: (language=="ru" ? "Глассные: " : "Vowels: ") + applicationData.vowelsAvailable
         anchors.left: parent.left
         anchors.verticalCenter: helpButton.verticalCenter
+        anchors.margins: topLevel.globalMargin
+    }
+
+    SimpleButton {
+        id: changeLanguageToRu
+        x: 526
+        width: 100
+        height: 30
+        text: "ru"
+        anchors.rightMargin: 14
+        anchors.topMargin: 102
+        onClicked:{
+            language = "ru"
+            GameView.language = "ru"
+            applicationData.changeLanguage("ru");
+        }
+
+        anchors.top: parent.top
+        anchors.right: parent.right
+        anchors.margins: topLevel.globalMargin
+    }
+
+    SimpleButton {
+        id: changeLanguageToEn
+        x: 526
+        width: 100
+        height: 30
+        text: "en"
+
+        anchors.rightMargin: 14
+        anchors.topMargin: 220
+        onClicked:{
+            language = "en"
+            GameView.language = "en"
+            applicationData.changeLanguage("en");
+        }
+
+        anchors.top: parent.top
+        anchors.right: parent.right
         anchors.margins: topLevel.globalMargin
     }
 
@@ -123,7 +161,7 @@ Item {
         anchors.left: parent.left
         height: globalButtonHeight
         width : letterSelector.keyWidth * 3
-        text: "Показать"
+        text: language=="ru" ? "Показать" : "Show"
         onClicked: {
             applicationData.reveal();
         }
@@ -136,7 +174,7 @@ Item {
         anchors.left: revealButton.right
         anchors.right: parent.right
         height: globalButtonHeight
-        text: "Отгадать слово целиком"
+        text: language=="ru" ? "Отгадать слово целиком" : "Guess the word"
         onClicked: {
             pageStack.push(Qt.resolvedUrl("GuessWordView.qml"));
         }
@@ -149,7 +187,7 @@ Item {
         anchors.left: parent.left
         anchors.right: parent.right
         height: globalButtonHeight
-        text: "Играть ещё раз?"
+        text: language=="ru" ? "Играть ещё раз?" : "Try again?"
         onClicked: {
             letterSelector.reset();
             applicationData.reset();
@@ -163,7 +201,7 @@ Item {
         id: gameOverText
         visible: gameOver
         anchors.fill: letterSelector
-        text: "Игра закончена"
+        text: language =="ru" ? "Игра закончена" : "Game over"
         fontSizeMode: Text.Fit
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
@@ -181,7 +219,7 @@ Item {
         id: successText
         visible: success
         anchors.fill: letterSelector
-        text: "Правильно!"
+        text: language=="ru" ? "Правильно!" : "Correct"
         fontSizeMode: Text.Fit
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter

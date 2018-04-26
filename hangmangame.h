@@ -33,6 +33,8 @@ public:
     Q_INVOKABLE void setWordsGiven(int count);
     Q_INVOKABLE void setWordsGuessedCorrectly(int count);
     Q_INVOKABLE void setScore(int score);
+    Q_INVOKABLE void changeLanguage(const QString setLanguage);
+    Q_INVOKABLE QString language = "ru";
 
     QString word() const { return m_word; }
     QString lettersOwned() const { return m_lettersOwned; }
@@ -45,6 +47,7 @@ public:
     int wordsGiven() const;
     int wordsGuessedCorrectly() const;
     int score() const;
+
 
 signals:
     void wordChanged();

@@ -20,5 +20,6 @@
         <file>qml/qthangman/Word.qml</file>
         <file>qml/qthangman/HowToView.qml</file>
         <file>qml/qthangman/+windows/Settings.qml</file>
+        <file>lang_en.txt</file>
     </qresource>
 </RCC>
