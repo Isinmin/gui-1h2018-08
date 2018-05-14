@@ -1,6 +1,5 @@
 
 import QtQuick 2.2
-import QtMultimedia 5.8
 // клавиатура
 Item {
     id: keyView
@@ -11,8 +10,6 @@ Item {
     property real verticalSpacing: topLevel.globalMargin / 4
     property bool locked: false
     property bool hideVowels: false
-
-
 
     Component.onCompleted: topLevel.buttonHeight = keyHeight
     onKeyHeightChanged: topLevel.buttonHeight = keyHeight

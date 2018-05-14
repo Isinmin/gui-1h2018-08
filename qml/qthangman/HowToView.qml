@@ -5,7 +5,7 @@ import QtQuick 2.2
 Item {
     PageHeader {
         id: header
-        title: gameView.language==="ru" ? "Как играть" : "How to play"
+        title: "Как играть"
     }
 
     Flickable {

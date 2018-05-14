@@ -1,5 +1,5 @@
-QT += quick qml multimedia multimediawidgets
-!android: !ios: !blackberry: qtHaveModule(widgets): QT += widgets multimedia multimediawidgets
+QT += quick qml
+!android: !ios: !blackberry: qtHaveModule(widgets): QT += widgets
 
 SOURCES += main.cpp \
     hangmangame.cpp
@@ -13,7 +13,6 @@ RESOURCES += \
 target.path = $$[QT_INSTALL_EXAMPLES]/purchasing/qthangman
 INSTALLS += target
 
-CONFIG+=config_openal
 OTHER_FILES += \
     qml/qthangman/GameView.qml \
     qml/qthangman/GuessWordView.qml \
@@ -33,19 +32,5 @@ OTHER_FILES += \
     enable2.txt
 
 DISTFILES += \
-    lang_en.txt \
-    Win.wav
+    lang_en.txt
 
-
-win32:CONFIG(release, debug|release): LIBS += -L'C:/Program Files (x86)/OpenAL 1.1 SDK/libs/Win64/' -lOpenAL32
-else:win32:CONFIG(debug, debug|release): LIBS += -L'C:/Program Files (x86)/OpenAL 1.1 SDK/libs/Win64/' -lOpenAL32d
-
-INCLUDEPATH += 'C:/Program Files (x86)/OpenAL 1.1 SDK/includes'
-DEPENDPATH += 'C:/Program Files (x86)/OpenAL 1.1 SDK/includes'
-
-win32:CONFIG(release, debug|release): LIBS += -L$$PWD/'OpenAL 1.1 SDK/libs/Win64/' -lOpenAL32
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/'OpenAL 1.1 SDK/libs/Win64/' -lOpenAL32d
-else:unix: LIBS += -L$$PWD/'OpenAL 1.1 SDK/libs/Win64/' -lOpenAL32
-
-INCLUDEPATH += $$PWD/'OpenAL 1.1 SDK/AL'
-DEPENDPATH += $$PWD/'OpenAL 1.1 SDK/AL'

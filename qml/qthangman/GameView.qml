@@ -94,7 +94,6 @@ Item {
         anchors.rightMargin: 14
         anchors.topMargin: 160
         onClicked:{
-            winSound.play()
             language = "en"
             GameView.language = "en"
             applicationData.changeLanguage("en");
