@@ -1,9 +1,11 @@
 import QtQuick 2.2
 import QtQuick.Controls 1.1
-
+import QtMultimedia 5.8
 Item {
     id: gameView
+    property alias dialog: gameView
     property string language: "ru"
+
     function allContained(owned, word)
     {
         for (var i=0; i<word.length; ++i) {
@@ -12,6 +14,16 @@ Item {
         }
         return true
     }
+    SoundEffect{
+        id:winSound
+        source: "/Win.wav"
+    }
+
+    SoundEffect{
+        id:loseSound
+        source: "/Lose.wav"
+    }
+
 
     // победы и поражения
 
@@ -21,13 +33,17 @@ Item {
 
 
     onGameOverChanged: {
-        if (gameOver)
+        if (gameOver){
+            loseSound.play()
             applicationData.gameOverReveal();
+        }
     }
 
     onSuccessChanged: {
-        if (success === true)
+        if (success === true){
+            winSound.play()
             applicationData.wordsGuessedCorrectly += 1;
+        }
     }
 
     Connections {
@@ -59,6 +75,7 @@ Item {
         onClicked:{
             language = "ru"
             GameView.language = "ru"
+            dialog.language = "ru"
             applicationData.changeLanguage("ru");
         }
 
@@ -75,8 +92,9 @@ Item {
         text: "en"
 
         anchors.rightMargin: 14
-        anchors.topMargin: 220
+        anchors.topMargin: 160
         onClicked:{
+            winSound.play()
             language = "en"
             GameView.language = "en"
             applicationData.changeLanguage("en");
@@ -163,6 +181,7 @@ Item {
         width : letterSelector.keyWidth * 3
         text: language=="ru" ? "Показать" : "Show"
         onClicked: {
+            loseSound.play()
             applicationData.reveal();
         }
     }
@@ -176,6 +195,7 @@ Item {
         height: globalButtonHeight
         text: language=="ru" ? "Отгадать слово целиком" : "Guess the word"
         onClicked: {
+            console.log(GameView.language)
             pageStack.push(Qt.resolvedUrl("GuessWordView.qml"));
         }
     }
@@ -211,7 +231,6 @@ Item {
         font.family: Settings.fontFamily
         font.weight: Font.Light
     }
-
 
     // победа
 

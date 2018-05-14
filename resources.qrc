@@ -21,5 +21,8 @@
         <file>qml/qthangman/HowToView.qml</file>
         <file>qml/qthangman/+windows/Settings.qml</file>
         <file>lang_en.txt</file>
+        <file>Win.wav</file>
+        <file>click.wav</file>
+        <file>Lose.wav</file>
     </qresource>
 </RCC>

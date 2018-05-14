@@ -1,7 +1,6 @@
 
 #ifndef HANGMANGAME_H
 #define HANGMANGAME_H
-
 #include <QObject>
 #include <QStringList>
 #include <QMutex>

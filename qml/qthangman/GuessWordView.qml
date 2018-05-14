@@ -3,15 +3,15 @@ import QtQuick.Controls 1.1
 
 Item {
     id: dialog
+    property string language: "ru"
     PageHeader {
         id: header
 
-        title: language==="ru" ? "Что это за слово?" : "Whats the word?"
+        title: language = "ru"? "Что это за слово?" : "Whats the word?"
         onClicked: {
             Qt.inputMethod.hide();
         }
     }
-
 
     Word {
         id: word
